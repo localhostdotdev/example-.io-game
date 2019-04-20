@@ -17,7 +17,7 @@ const connectedPromise = new Promise(resolve => {
   });
 });
 
-export const connect = onGameOver =>
+export const connect = onGameOver => (
   connectedPromise.then(() => {
     // Register callbacks
     socket.on(Constants.MSG_TYPES.GAME_UPDATE, processGameUpdate);
@@ -29,7 +29,8 @@ export const connect = onGameOver =>
         window.location.reload();
       };
     });
-  });
+  })
+);
 
 export const play = username => {
   socket.emit(Constants.MSG_TYPES.JOIN_GAME, username);
